@@ -1,3 +1,6 @@
+Build Status
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ffc2c841-51a0-4df5-a7a0-cb282ed1bc4c/deploy-status)](https://app.netlify.com/sites/headless-demo-ui-base/deploys)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Script
