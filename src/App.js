@@ -94,16 +94,17 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 /* Inner Pages */
 // import LoginPage from "pages/Login.js";
 // import SignupPage from "pages/Signup.js";
-// import PricingPage from "pages/Pricing.js";
-// import AboutUsPage from "pages/AboutUs.js";
-// import ContactUsPage from "pages/ContactUs.js";
-// import BlogIndexPage from "pages/BlogIndex.js";
-// import TermsOfServicePage from "pages/TermsOfService.js";
-// import PrivacyPolicyPage from "pages/PrivacyPolicy.js";
+import PricingPage from "pages/Pricing.js";
+import AboutUsPage from "pages/AboutUs.js";
+import ContactUsPage from "pages/ContactUs.js";
+import BlogIndexPage from "pages/BlogIndex.js";
+import TermsOfServicePage from "pages/TermsOfService.js";
+import PrivacyPolicyPage from "pages/PrivacyPolicy.js";
+import PageNotFound from "pages/404.js";
 
 import ComponentRenderer from "ComponentRenderer.js";
 import MainLandingPage from "MainLandingPage.js";
-import ThankYouPage from "ThankYouPage.js";
+import ThankYouPage from "pages/ThankYouPage.js";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -121,12 +122,31 @@ export default function App() {
         <Route path="/components/:type/:name">
           <ComponentRenderer />
         </Route>
+        <Route path="/pricing">
+          <PricingPage />
+        </Route>
+        <Route path="/about-us">
+          <AboutUsPage />
+        </Route>
+        <Route path="/contact-us">
+          <ContactUsPage />
+        </Route>
+        <Route path="/blog">
+          <BlogIndexPage />
+        </Route>
+        <Route path="/terms">
+          <TermsOfServicePage />
+        </Route>
+        <Route path="/privacy">
+          <PrivacyPolicyPage />
+        </Route>
         <Route path="/thank-you">
           <ThankYouPage />
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <MainLandingPage />
         </Route>
+        <Route component={PageNotFound} />
       </Switch>
     </Router>
   );

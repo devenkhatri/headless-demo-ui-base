@@ -39,10 +39,10 @@ export default () => {
             <LogoText>Treact</LogoText>
           </LogoContainer>
           <LinksContainer>
-            <Link href="#">Home</Link>
-            <Link href="#">About</Link>
-            <Link href="#">Contact Us</Link>
-            <Link href="#">Blog</Link>
+            <Link href="/">Home</Link>
+            <Link href="/about-us">About</Link>
+            <Link href="/contatc-us">Contact Us</Link>
+            <Link href="/blog">Blog</Link>
             <Link href="#">Reviews</Link>
           </LinksContainer>
           <SocialLinksContainer>
