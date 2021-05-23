@@ -92,8 +92,8 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 // import HostingCloudLandingPage from "demos/HostingCloudLandingPage.js";
 
 /* Inner Pages */
-// import LoginPage from "pages/Login.js";
-// import SignupPage from "pages/Signup.js";
+import LoginPage from "pages/Login.js";
+import SignupPage from "pages/Signup.js";
 import PricingPage from "pages/Pricing.js";
 import AboutUsPage from "pages/AboutUs.js";
 import ContactUsPage from "pages/ContactUs.js";
@@ -105,6 +105,9 @@ import PageNotFound from "pages/404.js";
 import ComponentRenderer from "ComponentRenderer.js";
 import MainLandingPage from "MainLandingPage.js";
 import ThankYouPage from "pages/ThankYouPage.js";
+
+import DrupalPage from "pages/Drupal";
+import BlogDetailPage from "pages/Drupal/BlogDetail.js";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -142,6 +145,16 @@ export default function App() {
         </Route>
         <Route path="/thank-you">
           <ThankYouPage />
+        </Route>
+        <Route path="/login">
+          <LoginPage />
+        </Route>
+        <Route path="/signup">
+          <SignupPage />
+        </Route>
+        <Route path="/drupal/:id" component={BlogDetailPage} />
+        <Route path="/drupal">
+          <DrupalPage />
         </Route>
         <Route exact path="/">
           <MainLandingPage />
