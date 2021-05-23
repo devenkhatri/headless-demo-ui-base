@@ -64,7 +64,7 @@ export default () => {
   },[]);
   return (
     <AnimationRevealPage>
-      <Header links={drupalNavLinks} logoLink={drupalLogoLink} />
+      <Header pageTitle={'Drupal Headless Demo'} links={drupalNavLinks} logoLink={drupalLogoLink} />
       <Container>
         <ContentWithPaddingXl>
           <Link href={'.'}>&lt;&lt; Back</Link>

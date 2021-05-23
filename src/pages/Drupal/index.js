@@ -26,7 +26,7 @@ export default () => {
 
   return (
     <AnimationRevealPage>
-      <Header links={drupalNavLinks} logoLink={drupalLogoLink} />
+      <Header pageTitle={'Drupal Headless Demo'} links={drupalNavLinks} logoLink={drupalLogoLink} />
       <Blog posts={postData} />
       <Footer />
     </AnimationRevealPage>
