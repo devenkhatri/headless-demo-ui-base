@@ -40,7 +40,7 @@ export const convertDrupalArticle = (input) => {
             date: item.attributes.changed || "",
             title: item.attributes.title || "",
             description: item.attributes.body.summary || "",            
-            fulldescription: item.attributes.body.value || "",            
+            fulldescription: item.attributes.body.processed || "",            
             url: "/drupal/"+item.id,
             featured: index == 0
         }
