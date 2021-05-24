@@ -10,7 +10,7 @@ export default () => {
   const [postData, setPostData] = React.useState([]);
 
   React.useEffect(()=>{
-    axios.get('https://dg-cors-anywhere.herokuapp.com/https://tcsacqcloudode2.prod.acquia-sites.com/jsonapi/node/article', { crossdomain: true })
+    axios.get('https://tcsacqcloudode2.prod.acquia-sites.com/jsonapi/node/article', { crossdomain: true })
     .then(function (response) {
       // handle success
       console.log(response.data.data);

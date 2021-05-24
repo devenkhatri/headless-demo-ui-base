@@ -49,7 +49,7 @@ export default () => {
   const [detailRecord, setDetailRecord] = React.useState();
   
   React.useEffect(()=>{
-    axios.get('https://dg-cors-anywhere.herokuapp.com/https://tcsacqcloudode2.prod.acquia-sites.com/jsonapi/node/article/'+id, { crossdomain: true })
+    axios.get('https://tcsacqcloudode2.prod.acquia-sites.com/jsonapi/node/article/'+id, { crossdomain: true })
     .then(function (response) {
       // handle success
       console.log(response.data.data);
