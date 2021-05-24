@@ -9,8 +9,8 @@ import Header from "components/headers/light.js";
 import Footer from "components/footers/MiniCenteredFooter.js";
 import { SectionHeading } from "components/misc/Headings";
 import _ from "lodash";
-import axios from 'axios';
-import { drupalLogoLink, drupalNavLinks, convertDrupalArticle } from 'pages/Drupal/DataAdaption';
+import Moment from 'react-moment';
+import { drupalLogoLink, drupalNavLinks, fetchDrupalArticle } from 'pages/Drupal/DataAdaption';
 
 const HeadingRow = tw.div`flex`;
 const Heading = tw(SectionHeading)`text-gray-900 mb-10`;
@@ -19,6 +19,9 @@ const Image = styled.div`
   ${props => css`background-image: url("${props.imageSrc}");`}
   ${tw`h-64 w-full bg-cover bg-center rounded-t-lg`}
 `;
+const Category = tw.div`uppercase text-primary-500 text-xs font-bold tracking-widest leading-loose after:content after:block after:border-b-2 after:border-primary-500 after:w-8`;
+const Author = tw.div`mt-4 uppercase text-gray-600 font-semibold text-xs`;
+const CreationDate = tw.div`mb-4 uppercase text-gray-600 italic font-semibold text-xs`;
 const Text = styled.div`
   ${tw`text-lg  text-gray-800`}
   p {
@@ -49,16 +52,8 @@ export default () => {
   const [detailRecord, setDetailRecord] = React.useState();
   
   React.useEffect(()=>{
-    axios.get('https://tcsacqcloudode2.prod.acquia-sites.com/jsonapi/node/article/'+id, { crossdomain: true })
-    .then(function (response) {
-      // handle success
-      console.log(response.data.data);
-      setDetailRecord(convertDrupalArticle([response.data.data])[0]);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-      setDetailRecord({});
+    fetchDrupalArticle(id).then((article)=>{
+      setDetailRecord(article)
     })
   },[]);
   return (
@@ -69,8 +64,13 @@ export default () => {
           <Link href={'.'}>&lt;&lt; Back</Link>
           <HeadingRow>
             <Heading>{detailRecord && detailRecord.title}</Heading>
-          </HeadingRow>
+          </HeadingRow>          
           <Image imageSrc={detailRecord && detailRecord.imageSrc} />
+          {detailRecord && detailRecord.author &&
+            <Author>By - {detailRecord.author}</Author>
+          }
+          <CreationDate><Moment format={"MMM DD, YYYY"}>{detailRecord && detailRecord.date}</Moment></CreationDate>
+          <Category>{detailRecord && detailRecord.category}</Category>
           <Text>
             <div dangerouslySetInnerHTML={{__html: detailRecord && detailRecord.fulldescription}} />
           </Text>
