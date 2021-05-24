@@ -10,11 +10,15 @@ import Footer from "components/footers/MiniCenteredFooter.js";
 import { SectionHeading } from "components/misc/Headings";
 import _ from "lodash";
 import axios from 'axios';
-import { drupalLogoLink, drupalNavLinks, convertDrupalArticle } from 'utils/DataAdaption';
+import { drupalLogoLink, drupalNavLinks, convertDrupalArticle } from 'pages/Drupal/DataAdaption';
 
 const HeadingRow = tw.div`flex`;
 const Heading = tw(SectionHeading)`text-gray-900 mb-10`;
 const Link = tw.a`uppercase text-primary-500 text-xs font-bold tracking-widest leading-loose after:content after:block after:border-b-2 after:border-primary-500 after:w-8`;
+const Image = styled.div`
+  ${props => css`background-image: url("${props.imageSrc}");`}
+  ${tw`h-64 w-full bg-cover bg-center rounded-t-lg`}
+`;
 const Text = styled.div`
   ${tw`text-lg  text-gray-800`}
   p {
@@ -42,8 +46,7 @@ const Text = styled.div`
 export default () => {
   const { id } = useParams()
 
-  const [headingText, setHeadingText] = React.useState();
-  const [detailText, setDetailText] = React.useState("Unable to fetch detail record")
+  const [detailRecord, setDetailRecord] = React.useState();
   
   React.useEffect(()=>{
     axios.get('https://dg-cors-anywhere.herokuapp.com/http://tcsacqcloudode1.prod.acquia-sites.com/jsonapi/node/article', { crossdomain: true })
@@ -53,9 +56,8 @@ export default () => {
       const convertedData = convertDrupalArticle(response.data.data);
       console.log(convertedData)
       const detailRecords = _.filter(convertedData, item => item.id == id);
-      setDetailText(detailRecords.length>0?detailRecords[0].fulldescription:"")
-      setHeadingText(detailRecords.length>0?detailRecords[0].title:"")
       console.log(detailRecords)
+      if(detailRecords.length>0) setDetailRecord(detailRecords[0])      
     })
     .catch(function (error) {
       // handle error
@@ -69,10 +71,11 @@ export default () => {
         <ContentWithPaddingXl>
           <Link href={'.'}>&lt;&lt; Back</Link>
           <HeadingRow>
-            <Heading>{headingText}</Heading>
+            <Heading>{detailRecord && detailRecord.title}</Heading>
           </HeadingRow>
+          <Image imageSrc={detailRecord && detailRecord.imageSrc} />
           <Text>
-            <div dangerouslySetInnerHTML={{__html: detailText}} />
+            <div dangerouslySetInnerHTML={{__html: detailRecord && detailRecord.fulldescription}} />
           </Text>
         </ContentWithPaddingXl>
       </Container>

@@ -7,7 +7,7 @@ import { SectionHeading, Subheading as SubheadingBase } from "components/misc/He
 import { SectionDescription } from "components/misc/Typography";
 import { ReactComponent as SvgDotPatternIcon } from "images/dot-pattern.svg";
 import axios from 'axios';
-import { convertDrupalArticle } from 'utils/DataAdaption';
+import { convertDrupalArticle } from 'pages/Drupal/DataAdaption';
 
 const HeadingContainer = tw.div`text-center`;
 const Subheading = tw(SubheadingBase)`mb-4`;

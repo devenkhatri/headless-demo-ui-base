@@ -1,3 +1,4 @@
+// https://tailwindcss.com/docs/customizing-colors
 module.exports = {
   prefix: '',
   important: false,
@@ -16,7 +17,7 @@ module.exports = {
       black: '#000',
       white: '#fff',
 
-      primary: {
+      primaryOriginal: {
         100: '#a273ff',
         200: '#935bff',
         300: '#8344ff',
@@ -26,6 +27,18 @@ module.exports = {
         700: '#5011cc',
         800: '#460fb3',
         900: '#3c0d99',
+      },
+
+      primary: {
+        100: '#DBEAFE',
+        200: '#BFDBFE',
+        300: '#93C5FD',
+        400: '#60A5FA',
+        500: '#3B82F6',
+        600: '#2563EB',
+        700: '#1D4ED8',
+        800: '#1E40AF',
+        900: '#1E3A8A',
       },
 
       secondary: {

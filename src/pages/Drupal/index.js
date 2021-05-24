@@ -4,7 +4,7 @@ import Header from "components/headers/light.js";
 import Footer from "components/footers/MiniCenteredFooter.js";
 import Blog from "components/blogs/GridWithFeaturedPostAndLoadMore.js";
 import axios from 'axios';
-import { drupalLogoLink, drupalNavLinks, convertDrupalArticle } from 'utils/DataAdaption';
+import { drupalLogoLink, drupalNavLinks, convertDrupalArticle } from 'pages/Drupal/DataAdaption';
 
 export default () => {
   const [postData, setPostData] = React.useState([]);

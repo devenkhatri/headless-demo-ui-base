@@ -1,13 +1,12 @@
 import { LogoLink, NavLinks, NavLink, PrimaryLink } from "components/headers/light.js";
 import tw from "twin.macro";
-import logoImageSrc from "images/logo.svg";
+import logoImageSrc from "images/logo-drupal.png";
 
 const getRandomColor = () => {
     return Math.floor(Math.random() * 16777215).toString(16);
 }
 
 const buttonRoundedCss = tw`rounded-full`;
-
 
 export const drupalLogoLink = (
     <LogoLink href="/drupal">
@@ -32,10 +31,11 @@ export const drupalNavLinks = [
 
 export const convertDrupalArticle = (input) => {
     const output = [];
+    // "https://via.placeholder.com/150/" + getRandomColor() + "?text=Dummy Image"
     input && input.map((item, index) => {
         const newItem = {
             id: item.id,
-            imageSrc: item.attributes.postImage || "https://via.placeholder.com/150/" + getRandomColor() + "?text=Dummy Image",
+            imageSrc: item.attributes.postImage || "https://picsum.photos/id/"+(Math.floor(Math.random() * 1000))+"/600/400/?grayscale&blur=2",
             category: item.attributes.title || "",
             date: item.attributes.changed || "",
             title: item.attributes.title || "",
