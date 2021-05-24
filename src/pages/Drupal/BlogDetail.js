@@ -49,19 +49,16 @@ export default () => {
   const [detailRecord, setDetailRecord] = React.useState();
   
   React.useEffect(()=>{
-    axios.get('https://dg-cors-anywhere.herokuapp.com/https://tcsacqcloudode1.prod.acquia-sites.com/jsonapi/node/article', { crossdomain: true })
+    axios.get('https://dg-cors-anywhere.herokuapp.com/https://tcsacqcloudode1.prod.acquia-sites.com/jsonapi/node/article/'+id, { crossdomain: true })
     .then(function (response) {
       // handle success
       console.log(response.data.data);
-      const convertedData = convertDrupalArticle(response.data.data);
-      console.log(convertedData)
-      const detailRecords = _.filter(convertedData, item => item.id == id);
-      console.log(detailRecords)
-      if(detailRecords.length>0) setDetailRecord(detailRecords[0])      
+      setDetailRecord(convertDrupalArticle([response.data.data])[0]);
     })
     .catch(function (error) {
       // handle error
       console.log(error);
+      setDetailRecord({});
     })
   },[]);
   return (
