@@ -97,7 +97,7 @@ export default ({
                   <Image imageSrc={post.imageSrc} />
                   <Info>
                     <Category>{post.category}</Category>
-                    <CreationDate><Moment format={"MMM DD, YYYY"}>{post.date}</Moment></CreationDate>
+                    <CreationDate>{post.date}</CreationDate>
                     <Title>{post.title}</Title>
                     {post.featured && post.description && <Description>{post.description}</Description>}
                   </Info>

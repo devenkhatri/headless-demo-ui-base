@@ -69,7 +69,7 @@ export default () => {
           {detailRecord && detailRecord.author &&
             <Author>By - {detailRecord.author}</Author>
           }
-          <CreationDate><Moment format={"MMM DD, YYYY"}>{detailRecord && detailRecord.date}</Moment></CreationDate>
+          <CreationDate>{detailRecord && detailRecord.date}</CreationDate>
           <Category>{detailRecord && detailRecord.category}</Category>
           <Text>
             <div dangerouslySetInnerHTML={{__html: detailRecord && detailRecord.fulldescription}} />
