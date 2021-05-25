@@ -9,7 +9,7 @@ import Header from "components/headers/light.js";
 import Footer from "components/footers/MiniCenteredFooter.js";
 import { SectionHeading } from "components/misc/Headings";
 import _ from "lodash";
-import Moment from 'react-moment';
+import HashLoader from "react-spinners/HashLoader";
 import { drupalLogoLink, drupalNavLinks, fetchDrupalArticle } from 'pages/Drupal/DataAdaption';
 
 const HeadingRow = tw.div`flex`;
@@ -49,22 +49,25 @@ const Text = styled.div`
 export default () => {
   const { id } = useParams()
 
+  const [loading, setLoading] = React.useState(true);
   const [detailRecord, setDetailRecord] = React.useState();
   
   React.useEffect(()=>{
     fetchDrupalArticle(id).then((article)=>{
       setDetailRecord(article)
+      setLoading(false);
     })
   },[]);
   return (
     <AnimationRevealPage>
-      <Header pageTitle={'Drupal Headless Demo'} links={drupalNavLinks} logoLink={drupalLogoLink} />
+      <Header pageTitle={'Drupal Headless Demo'} links={drupalNavLinks} logoLink={drupalLogoLink} />      
       <Container>
-        <ContentWithPaddingXl>
-          <Link href={'.'}>&lt;&lt; Back</Link>
+        <ContentWithPaddingXl>                  
+          <Link href={'.'}>&lt;&lt; Back</Link>          
           <HeadingRow>
             <Heading>{detailRecord && detailRecord.title}</Heading>
           </HeadingRow>          
+          <HashLoader loading={loading} />
           <Image imageSrc={detailRecord && detailRecord.imageSrc} />
           {detailRecord && detailRecord.author &&
             <Author>By - {detailRecord.author}</Author>
